@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boy Kilo Hesapla</title>
+</head>
+<body>
+    <form name="boykilo">
+        BOY:
+        <input type="number" name="boy">
+        <br><br>
+        KILO:
+        <input type="number" name="kilo">
+        <br><br>
+        Cinsiyet:
+        <select id="cinsiyet">
+            <option value="secim">Seçiniz</option>
+            <option value="erkek">Erkek</option>
+            <option value="kadin">Kadın</option>
+        </select>
+        <input type="button" onclick="IdealKilo()" value="Hesapla">
+    </form>
+    <script>
+        function IdealKilo(){
+            var boy = document.forms["boykilo"]["boy"].value;
+            var kilo = document.forms["boykilo"]["kilo"].value;
+            var cinsiyet = document.getElementById('cinsiyet').value;
+            var kiloHesapla;
+            if(boy !="" && kilo !="" && cinsiyet != "secim"){
+                if(cinsiyet == "erkek"){
+                    kiloHesapla = 50 + 2.3 * ((boy / 2.54) - 60).toFixed(2);
+                    console.log("Test1");
+                }
+                else{
+                    kiloHesapla = 45 + 2.3 * ((boy / 2.54)-60).toFixed(2);
+                }
+                if(kiloHesapla>kilo){
+                    alert("İdeal Kilonuzun Üzerinizdesiniz İdeal Kilonuz: "+kiloHesapla+" Kilonuz: "+kilo+" Fark: "+(kiloHesapla-kilo));
+                }
+                else if(kiloHesapla<kilo){
+                    alert("İdeal Kilonuzun Altındasınız İdeal Kilonuz: "+kiloHesapla+" Kilonuz: "+kilo+" Fark: "+(kilo-kiloHesapla));
+                }
+                else{
+                    alert("İdeal Kilonuzdasınız");
+                }
+            }
+            else{
+                alert("Lütfen Boş Alanları Doldurunuz");
+            }
+        }
+    </script>
+</body>
+</html>

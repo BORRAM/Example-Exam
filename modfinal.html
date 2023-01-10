@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boy Kilo Endeksi</title>
+    </head>
+<body>
+    <form name="formum">
+        BOY:
+        <input type="number" name="boy" min="100" max="220" step="50">
+        <br><br>
+        KİLO:
+        <input type="number" name="kilo" min="40" max="220" step="10">
+        <br><br>
+        Cinsiyet:
+        <select id="cinsiyet">
+            <option value="-1">Seçiniz...</option>
+            <option value="erkek">Erkek</option>
+            <option value="kadin">Kadın</option>
+        </select>
+        <input type="button" onclick="idealKilo()" value="Gönder">
+    </form>
+    
+    <script>
+        function idealKilo(){
+            var boy = document.forms["formum"]["boy"].value;
+            var kilo = document.forms["formum"]["kilo"].value;
+            var cinsiyet = document.getElementById('cinsiyet').value;
+            var kiloHesapla, kiloHesaplaTest;
+			var kitleBoy = boy/100;
+			var kitleEndeks = (kilo / (kitleBoy * kitleBoy)).toFixed(2);
+            if(boy !="" && kilo !="" && cinsiyet != -1){
+                if(cinsiyet == "erkek"){
+                    kiloHesapla = 50 + 2.3 * ((boy / 2.54) - 60).toFixed(2);
+                }else{
+                    kiloHesapla = 45.5 + 2.3 * ((boy / 2.54) - 60).toFixed(2);
+                }
+                if(kiloHesapla>kilo){
+                    alert("İdeal Kilonuzun Altındasınız \nİdeal Kilonuz: "+kiloHesapla.toFixed(0)+" \nKilonuz: "+kilo+" \nFark: "+(kiloHesapla-kilo).toFixed(0)+" \nKitle Endeksiniz: "+kitleEndeks);
+                }
+                else if(kiloHesapla<kilo){
+                    alert("İdeal Kilonuzun Üzerindesiniz \nİdeal Kilonuz: "+kiloHesapla.toFixed(0)+" \nKilonuz: "+kilo+" \nFark: "+(kilo-kiloHesapla).toFixed(0)+" \nKitle Endeksiniz: "+kitleEndeks);
+                }else{
+                    alert("ideal kilonuz, normal kilonuza eşit ...")
+                }
+
+            }else{
+                alert("Kilo, Boy ve Cinsiyet seçtiğinden emin olun...")
+            }
+        }
+    </script>
+</body>
+</html>
